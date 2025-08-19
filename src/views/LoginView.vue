@@ -1,9 +1,13 @@
 <script setup>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { Eye, EyeOff } from 'lucide-vue-next'
+import http from '../api/http'
+import { useUserStore } from '../store/user'
 
 const router = useRouter()
+const route  = useRoute()
+const user   = useUserStore()
 
 // pestaña activa: "login" | "register"
 const activeTab = ref('login')
@@ -12,6 +16,7 @@ const activeTab = ref('login')
 const isLoading = ref(false)
 const showLoginPass = ref(false)
 const showRegPass = ref(false)
+const errorMsg = ref('')
 
 // formularios
 const login = ref({ email: '', password: '', remember: false })
@@ -20,25 +25,32 @@ const reg = ref({
   password: '', confirm: ''
 })
 
+// endpoint helpers (ajusta si cambias prefix)
+const API_LOGIN    = '/auth/login'     // POST {email, password} -> {access_token}
+const API_REGISTER = '/auth/register'  // POST {email, password, role, full_name} (requiere ADMIN/SUPERUSER)
+
+// LOGIN
 const handleLogin = async (e) => {
   e.preventDefault()
+  errorMsg.value = ''
   isLoading.value = true
-  setTimeout(() => {
-    isLoading.value = false
-    // Redirige al dashboard (ajusta la ruta según tu router)
-    router.push('/')
-    // Si no tienes router: window.location.href = '/dashboard'
-  }, 1200)
-}
+  try {
+    const { data } = await http.post(API_LOGIN, {
+      email: login.value.email,
+      password: login.value.password,
+    })
+    if (!data?.access_token) throw new Error('Respuesta inválida del servidor')
+    user.setToken(data.access_token)
 
-const handleRegister = async (e) => {
-  e.preventDefault()
-  isLoading.value = true
-  setTimeout(() => {
+    // redirección (si venías de una ruta protegida)
+    const to = route.query.redirect || '/dashboard'
+    router.push(String(to))
+  } catch (err) {
+    console.error(err)
+    errorMsg.value = 'Credenciales inválidas o servidor no disponible.'
+  } finally {
     isLoading.value = false
-    // después de registrarse, vuelve a la pestaña de login
-    activeTab.value = 'login'
-  }, 1200)
+  }
 }
 </script>
 
@@ -64,24 +76,20 @@ const handleRegister = async (e) => {
         <p class="text-center text-gray-600">
           Acceda al panel de análisis de medicamentos
         </p>
+        <p v-if="errorMsg" class="text-center text-sm text-red-600 mt-2">
+          {{ errorMsg }}
+        </p>
       </div>
 
       <div class="px-6 pb-6">
         <!-- Tabs -->
-        <div class="grid grid-cols-2 mb-6 rounded-lg overflow-hidden">
+        <div class="grid mb-6 rounded overflow-hidden">
           <button
             class="py-2 text-center transition font-semibold data-[active=true]:bg-red-600 data-[active=true]:text-white bg-gray-100"
             :data-active="activeTab === 'login'"
             @click="activeTab = 'login'"
           >
             Iniciar Sessión
-          </button>
-          <button
-            class="py-2 text-center transition font-semibold data-[active=true]:bg-blue-600 data-[active=true]:text-white bg-gray-100"
-            :data-active="activeTab === 'register'"
-            @click="activeTab = 'register'"
-          >
-            Registrate
           </button>
         </div>
 
@@ -136,6 +144,7 @@ const handleRegister = async (e) => {
         </form>
 
         <!-- REGISTER -->
+         <!--
         <form v-else @submit="handleRegister" class="space-y-4">
           <div class="grid gap-4">
             <div class="space-y-2">
@@ -208,7 +217,7 @@ const handleRegister = async (e) => {
           >
             {{ isLoading ? 'Creando una cuenta...' : 'Crear Cuenta' }}
           </button>
-        </form>
+        </form>-->
       </div>
     </div>
 
