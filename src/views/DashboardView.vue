@@ -1,4 +1,6 @@
 <script setup>
+import DashboardWelcome from '../components/DashboardWelcome.vue'
+import DashboardStats from '../components/DashboardStats.vue'
 import { useUserStore } from '../store/user'
 import { useRouter } from 'vue-router'
 const user = useUserStore()
@@ -11,6 +13,8 @@ const goToAdmin = () => router.push('/admin/usuarios')
 
 <template>
   <section class="p-6 space-y-4">
+    <DashboardWelcome />
+    <DashboardStats />
     <h1 class="text-2xl font-semibold">Dashboard</h1>
     <p class="text-gray-700">
       Bienvenido, <strong>{{ user.email }}</strong> (rol: {{ user.role }})
