@@ -33,7 +33,7 @@ const submit = async (e) => {
     await http.post('/auth/register', {
       full_name: form.value.full_name,
       email: form.value.email,
-      role: form.value.role,       // 👈 se envía el ENUM (value)
+      role: form.value.role,       
       password: form.value.password,
     })
     msg.value = 'Usuario creado correctamente.'
@@ -54,7 +54,6 @@ const submit = async (e) => {
       <form @submit="submit" class="space-y-4">
         <div v-if="msg" class="text-green-600 text-sm">{{ msg }}</div>
         <div v-if="err" class="text-red-600 text-sm">{{ err }}</div>
-
         <div>
           <label class="text-sm text-gray-700">Nombre completo</label>
           <input v-model="form.full_name" class="w-full border rounded px-3 py-2" />
@@ -70,7 +69,6 @@ const submit = async (e) => {
               {{ r.label }}
             </option>
           </select>
-
         </div>
         <div>
           <label class="text-sm text-gray-700">Contraseña</label>
@@ -80,7 +78,6 @@ const submit = async (e) => {
           <label class="text-sm text-gray-700">Confirmar contraseña</label>
           <input v-model="form.confirm" type="password" class="w-full border rounded px-3 py-2" />
         </div>
-
         <button :disabled="isLoading" class="bg-blue-700 text-white px-4 py-2 rounded hover:opacity-90">
           {{ isLoading ? 'Creando...' : 'Crear usuario' }}
         </button>

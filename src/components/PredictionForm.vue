@@ -46,6 +46,46 @@ const onGenerate = () => {
           </option>
         </select>
       </div>
+      <!-- concentración -->
+       <!-- 
+      <div class="space-y-2">
+        <label class="flex items-center gap-2 text-sm font-medium text-gray-700">
+          <Pill class="h-4 w-4 text-blue-600" /> Concentración
+        </label>
+        <select v-model="selectedMedication"
+                class="w-full rounded-lg border border-gray-200 px-3 py-2 bg-white text-gray-700 outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500">
+          <option disabled value="">Elige un medicamento…</option>
+          <option v-for="m in medications" :key="m.id" :value="m.id">
+            {{ m.name }} — {{ m.category }}
+          </option>
+        </select>
+      </div>
+  
+      <div class="space-y-2">
+        <label class="flex items-center gap-2 text-sm font-medium text-gray-700">
+          <Pill class="h-4 w-4 text-blue-600" /> Forma Farmaceutica
+        </label>
+        <select v-model="selectedMedication"
+                class="w-full rounded-lg border border-gray-200 px-3 py-2 bg-white text-gray-700 outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500">
+          <option disabled value="">Elige un medicamento…</option>
+          <option v-for="m in medications" :key="m.id" :value="m.id">
+            {{ m.name }} — {{ m.category }}
+          </option>
+        </select>
+      </div>
+      unidades de medida 
+      <div class="space-y-2">
+        <label class="flex items-center gap-2 text-sm font-medium text-gray-700">
+          <Pill class="h-4 w-4 text-blue-600" /> Unidad de Medida
+        </label>
+        <select v-model="selectedMedication"
+                class="w-full rounded-lg border border-gray-200 px-3 py-2 bg-white text-gray-700 outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500">
+          <option disabled value="">Elige un medicamento…</option>
+          <option v-for="m in medications" :key="m.id" :value="m.id">
+            {{ m.name }} — {{ m.category }}
+          </option>
+        </select>
+      </div> -->
 
       <!-- Meses -->
       <div class="space-y-2">

@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import PredictionForm from '../components/PredictionForm.vue'
 import PredictionChart from '../components/PredictionChart.vue'
+import http from '../api/http'
 
 // (mock) trae del backend cuando quieras
 const medications = [
@@ -15,13 +16,46 @@ const medications = [
   { id: 'albuterol',     name: 'Albuterol Inhaler',    category: 'Respiratory' },
 ]
 
+const data2 = ref(null)
 const rows = ref([])
 const lastUpdated = ref(null)
 const loading = ref(false)
-
-const generateChartData = (medication, months) => {
+const API_PREDICT    = '/predict' 
+const predict = ref(
+  {
+  "name": "paracetamol (acetaminofeno)",
+  "concentration": "500",
+  "dosage_form": "mg",
+  "unit_measure": "compr",
+  "periods": 6
+}
+)
+const handlePredict = async (e) => {
+  //e.preventDefault()
+  console.log("holi")
+  try{
+    const { data } = await http.post(API_PREDICT, {
+      name: predict.value.name,
+      concentration: predict.value.concentration,
+      dosage_form: predict.value.dosage_form,
+      unit_measure: predict.value.unit_measure,
+      periods: predict.value.periods
+    })
+    console.log(data)
+    return data
+  }catch (err) {
+    console.error(err)
+    console.log("holiyuguygiiuy")
+  } finally {
+    loading.value = false
+  }
+}
+const generateChartData = async (medication, months) => {
   const data = []
   const now = new Date()
+  
+  data2.value = await handlePredict()
+  console.log(data2.value)
   for (let i = 11; i >= 0; i--) {
     const d = new Date(now); d.setMonth(d.getMonth() - i)
     const base = Math.floor(Math.random() * 500) + 800
@@ -46,6 +80,7 @@ const generateChartData = (medication, months) => {
       type: 'predicted'
     })
   }
+  console.log(data)
   return data
 }
 
@@ -54,19 +89,15 @@ const handleGenerate = async ({ medication, months }) => {
   await new Promise(r => setTimeout(r, 600))
   rows.value = generateChartData(medication, months)
   lastUpdated.value = new Date()
-  loading.value = false
+  //loading.value = false
 }
 </script>
 
 <template>
-  <!-- neutraliza el padding del <main> (full-bleed) -->
   <section class="-mx-4 lg:-mx-6 space-y-4 p-6">
-    <!-- título con padding reinyectado -->
     <h1 class="px-4 lg:px-6 text-2xl font-semibold text-gray-900">Predicciones</h1>
 
-    <!-- grid full-bleed + contenido centrado -->
     <div class="px-4 lg:px-6 grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-      <!-- el class se fusiona con el root del componente -->
       <PredictionForm
         class="h-full max-w-[480px] mx-auto lg:mx-0"
         :medications="medications"

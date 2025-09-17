@@ -1,0 +1,74 @@
+Date : 2025-09-11 01:28:14
+Directory : d:\PROYECTO_GRADO\frontend_web
+Total : 33 files,  4167 codes, 157 comments, 194 blanks, all 4518 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JSON       |          2 |      2,375 |          0 |          2 |      2,377 |
+| Vue        |         21 |      1,638 |        144 |        171 |      1,953 |
+| JavaScript |          5 |        135 |         13 |         15 |        163 |
+| HTML       |          1 |         13 |          0 |          1 |         14 |
+| Markdown   |          1 |          3 |          0 |          3 |          6 |
+| XML        |          2 |          2 |          0 |          0 |          2 |
+| PostCSS    |          1 |          1 |          0 |          2 |          3 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                               | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                  |         33 |      4,167 |        157 |        194 |      4,518 |
+| . (Files)                                                          |          5 |      2,400 |          1 |          8 |      2,409 |
+| public                                                             |          1 |          1 |          0 |          0 |          1 |
+| src                                                                |         27 |      1,766 |        156 |        186 |      2,108 |
+| src (Files)                                                        |          3 |         17 |          0 |          9 |         26 |
+| src\api                                                            |          1 |         26 |          5 |          2 |         33 |
+| src\assets                                                         |          1 |          1 |          0 |          0 |          1 |
+| src\components                                                     |         11 |      1,137 |         64 |        116 |      1,317 |
+| src\layouts                                                        |          1 |         19 |          0 |          3 |         22 |
+| src\router                                                         |          1 |         44 |          4 |          5 |         53 |
+| src\store                                                          |          1 |         45 |          3 |          3 |         51 |
+| src\views                                                          |          8 |        477 |         80 |         48 |        605 |
++--------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                           | language   | code       | comment    | blank      | total      |
++--------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| d:\PROYECTO_GRADO\frontend_web\README.md                           | Markdown   |          3 |          0 |          3 |          6 |
+| d:\PROYECTO_GRADO\frontend_web\index.html                          | HTML       |         13 |          0 |          1 |         14 |
+| d:\PROYECTO_GRADO\frontend_web\package-lock.json                   | JSON       |      2,349 |          0 |          1 |      2,350 |
+| d:\PROYECTO_GRADO\frontend_web\package.json                        | JSON       |         26 |          0 |          1 |         27 |
+| d:\PROYECTO_GRADO\frontend_web\public\vite.svg                     | XML        |          1 |          0 |          0 |          1 |
+| d:\PROYECTO_GRADO\frontend_web\src\App.vue                         | Vue        |          5 |          0 |          4 |          9 |
+| d:\PROYECTO_GRADO\frontend_web\src\api\http.js                     | JavaScript |         26 |          5 |          2 |         33 |
+| d:\PROYECTO_GRADO\frontend_web\src\assets\vue.svg                  | XML        |          1 |          0 |          0 |          1 |
+| d:\PROYECTO_GRADO\frontend_web\src\components\DashboardStats.vue   | Vue        |         37 |          0 |          4 |         41 |
+| d:\PROYECTO_GRADO\frontend_web\src\components\DashboardWelcome.vue | Vue        |        113 |          2 |         10 |        125 |
+| d:\PROYECTO_GRADO\frontend_web\src\components\DownloadsTable.vue   | Vue        |        171 |          3 |         16 |        190 |
+| d:\PROYECTO_GRADO\frontend_web\src\components\HelloWorld.vue       | Vue        |         37 |          0 |          7 |         44 |
+| d:\PROYECTO_GRADO\frontend_web\src\components\HistoryFilters.vue   | Vue        |        105 |          4 |         10 |        119 |
+| d:\PROYECTO_GRADO\frontend_web\src\components\HistoryTable.vue     | Vue        |        156 |          1 |          8 |        165 |
+| d:\PROYECTO_GRADO\frontend_web\src\components\PredictionChart.vue  | Vue        |         90 |          0 |         12 |        102 |
+| d:\PROYECTO_GRADO\frontend_web\src\components\PredictionForm.vue   | Vue        |         88 |         44 |          9 |        141 |
+| d:\PROYECTO_GRADO\frontend_web\src\components\RecentReports.vue    | Vue        |         99 |          0 |         13 |        112 |
+| d:\PROYECTO_GRADO\frontend_web\src\components\ReportBuilder.vue    | Vue        |        137 |          5 |         15 |        157 |
+| d:\PROYECTO_GRADO\frontend_web\src\components\Sidebar.vue          | Vue        |        104 |          5 |         12 |        121 |
+| d:\PROYECTO_GRADO\frontend_web\src\layouts\MainLayout.vue          | Vue        |         19 |          0 |          3 |         22 |
+| d:\PROYECTO_GRADO\frontend_web\src\main.js                         | JavaScript |         11 |          0 |          3 |         14 |
+| d:\PROYECTO_GRADO\frontend_web\src\router\index.js                 | JavaScript |         44 |          4 |          5 |         53 |
+| d:\PROYECTO_GRADO\frontend_web\src\store\user.js                   | JavaScript |         45 |          3 |          3 |         51 |
+| d:\PROYECTO_GRADO\frontend_web\src\style.css                       | PostCSS    |          1 |          0 |          2 |          3 |
+| d:\PROYECTO_GRADO\frontend_web\src\views\AdminUsersView.vue        | Vue        |         82 |          0 |          6 |         88 |
+| d:\PROYECTO_GRADO\frontend_web\src\views\DashboardView.vue         | Vue        |         33 |          0 |          4 |         37 |
+| d:\PROYECTO_GRADO\frontend_web\src\views\DownloadView.vue          | Vue        |         11 |          0 |          2 |         13 |
+| d:\PROYECTO_GRADO\frontend_web\src\views\HistoricalView.vue        | Vue        |         90 |          1 |          9 |        100 |
+| d:\PROYECTO_GRADO\frontend_web\src\views\HomePageView.vue          | Vue        |          3 |          0 |          0 |          3 |
+| d:\PROYECTO_GRADO\frontend_web\src\views\LoginView.vue             | Vue        |        134 |         79 |         17 |        230 |
+| d:\PROYECTO_GRADO\frontend_web\src\views\PredictionView.vue        | Vue        |        111 |          0 |          7 |        118 |
+| d:\PROYECTO_GRADO\frontend_web\src\views\ReportView.vue            | Vue        |         13 |          0 |          3 |         16 |
+| d:\PROYECTO_GRADO\frontend_web\vite.config.js                      | JavaScript |          9 |          1 |          2 |         12 |
+| Total                                                              |            |      4,167 |        157 |        194 |      4,518 |
++--------------------------------------------------------------------+------------+------------+------------+------------+------------+
