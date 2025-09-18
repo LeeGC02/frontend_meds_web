@@ -14,9 +14,10 @@ function decodeJwtPayload (token) {
 
 export const useUserStore = defineStore('user', {
   state: () => ({
-    token: localStorage.getItem('token') || null,
-    email: localStorage.getItem('email') || null,
-    role: localStorage.getItem('role') || null,
+    // TEMPORALMENTE SIMULANDO USUARIO AUTENTICADO PARA DESARROLLO
+    token: 'fake-token-for-development',
+    email: 'usuario@ejemplo.com',
+    role: 'ADMIN',
   }),
   getters: {
     isAuthenticated: (s) => !!s.token,

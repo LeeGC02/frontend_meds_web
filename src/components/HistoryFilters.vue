@@ -41,20 +41,21 @@ const onApply = () => {
         <h3 class="text-lg font-medium text-gray-900">Filtrar históricos</h3>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-        <!-- Búsqueda -->
-        <div class="space-y-2">
-          <label class="text-sm font-medium text-gray-700">Buscar</label>
-          <div class="relative">
-            <Search class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-            <input
-              v-model="searchTerm"
-              placeholder="Buscar registros…"
-              class="pl-10 w-full rounded-lg border border-gray-200 px-3 py-2 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-            />
-          </div>
+      <!-- Primera fila: Campo de búsqueda completo -->
+      <div class="space-y-2 mb-4">
+        <label class="text-sm font-medium text-gray-700">Buscar</label>
+        <div class="relative">
+          <Search class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+          <input
+            v-model="searchTerm"
+            placeholder="Buscar por ID, medicamento, prescriptor, paciente..."
+            class="pl-10 w-full rounded-lg border border-gray-200 px-3 py-2 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+          />
         </div>
+      </div>
 
+      <!-- Segunda fila: Selects -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
         <!-- Medicamento -->
         <div class="space-y-2">
           <label class="text-sm font-medium text-gray-700">Medicamento</label>
@@ -76,8 +77,10 @@ const onApply = () => {
             <option v-for="d in departments" :key="d" :value="d">{{ d }}</option>
           </select>
         </div>
+      </div>
 
-        <!-- Rango de fechas -->
+      <!-- Tercera fila: Rango de fechas -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="space-y-2">
           <label class="text-sm font-medium text-gray-700">Desde</label>
           <div class="relative">

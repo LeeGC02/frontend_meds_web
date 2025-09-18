@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import HistoryFilters from '../components/HistoryFilters.vue'
 import HistoryTable from '../components/HistoryTable.vue'
+import CSVUpload from '../components/CSVUpload.vue'
 
 // Generador de datos demo (cámbialo por tu API cuando quieras)
 const generateHistoryData = () => {
@@ -75,6 +76,18 @@ const exportCsv = () => {
   a.href = url; a.download = 'historicos.csv'; a.click()
   URL.revokeObjectURL(url)
 }
+
+// Manejar carga de CSV para entrenamiento de IA
+const handleCSVUpload = (file) => {
+  console.log('Archivo CSV cargado para entrenamiento:', file.name)
+  // Aquí puedes agregar la lógica para procesar el archivo y entrenar el modelo
+  // Por ejemplo: enviar a tu backend para procesamiento
+}
+
+const handleCSVError = (error) => {
+  console.error('Error al cargar CSV:', error)
+  // Aquí puedes agregar lógica para mostrar notificaciones de error
+}
 </script>
 
 <template>
@@ -82,18 +95,26 @@ const exportCsv = () => {
   <section class="-mx-4 lg:-mx-6 space-y-4 p-6">
     <h1 class="px-4 lg:px-6 text-2xl font-semibold text-gray-900">Históricos</h1>
 
-    <div class="px-4 lg:px-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+    <!-- Filtros y carga de CSV lado a lado -->
+    <div class="px-4 lg:px-6 grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
       <HistoryFilters
-        class="h-full max-w-[520px] mx-auto lg:mx-0"
+        class="h-full"
         :medications="medications"
         :departments="departments"
         @apply="applyFilters"
         @reset="resetFilters"
         @export="exportCsv"
       />
-      <div class="lg:col-span-2">
-        <HistoryTable :rows="filteredRows" />
-      </div>
+      
+      <CSVUpload 
+        @upload="handleCSVUpload"
+        @error="handleCSVError"
+      />
+    </div>
+
+    <!-- Tabla de históricos -->
+    <div class="px-4 lg:px-6">
+      <HistoryTable :rows="filteredRows" />
     </div>
   </section>
 </template>
