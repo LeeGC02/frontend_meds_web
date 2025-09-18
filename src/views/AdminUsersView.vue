@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import http from '../api/http'
+import UsersList from '../components/UsersList.vue'
 
 // Mapa de roles: value (enum BD) -> label (UI)
 const roles = [
@@ -48,40 +49,43 @@ const submit = async (e) => {
 </script>
 
 <template>
-  <section class="space-y-4">
-    <h2 class="text-2xl font-semibold">Gestión de usuarios</h2>
-    <div class="bg-white p-6 rounded-xl shadow max-w-xl">
-      <form @submit="submit" class="space-y-4">
-        <div v-if="msg" class="text-green-600 text-sm">{{ msg }}</div>
-        <div v-if="err" class="text-red-600 text-sm">{{ err }}</div>
-        <div>
-          <label class="text-sm text-gray-700">Nombre completo</label>
-          <input v-model="form.full_name" class="w-full border rounded px-3 py-2" />
-        </div>
-        <div>
-          <label class="text-sm text-gray-700">Correo</label>
-          <input v-model="form.email" type="email" class="w-full border rounded px-3 py-2" />
-        </div>
-        <div>
-          <label class="text-sm text-gray-700">Rol</label>
-          <select v-model="form.role" class="w-full border rounded px-3 py-2 bg-white">
-            <option v-for="r in roles" :key="r.value" :value="r.value">
-              {{ r.label }}
-            </option>
-          </select>
-        </div>
-        <div>
-          <label class="text-sm text-gray-700">Contraseña</label>
-          <input v-model="form.password" type="password" class="w-full border rounded px-3 py-2" />
-        </div>
-        <div>
-          <label class="text-sm text-gray-700">Confirmar contraseña</label>
-          <input v-model="form.confirm" type="password" class="w-full border rounded px-3 py-2" />
-        </div>
-        <button :disabled="isLoading" class="bg-blue-700 text-white px-4 py-2 rounded hover:opacity-90">
-          {{ isLoading ? 'Creando...' : 'Crear usuario' }}
-        </button>
-      </form>
-    </div>
-  </section>
+  <div class='w-full flex flex-row gap-[30px]'>
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Gestión de usuarios</h2>
+      <div class="bg-white p-6 rounded-xl shadow max-w-xl">
+        <form @submit="submit" class="space-y-4">
+          <div v-if="msg" class="text-green-600 text-sm">{{ msg }}</div>
+          <div v-if="err" class="text-red-600 text-sm">{{ err }}</div>
+          <div>
+            <label class="text-sm text-gray-700">Nombre completo</label>
+            <input v-model="form.full_name" class="w-full border rounded px-3 py-2" />
+          </div>
+          <div>
+            <label class="text-sm text-gray-700">Correo</label>
+            <input v-model="form.email" type="email" class="w-full border rounded px-3 py-2" />
+          </div>
+          <div>
+            <label class="text-sm text-gray-700">Rol</label>
+            <select v-model="form.role" class="w-full border rounded px-3 py-2 bg-white">
+              <option v-for="r in roles" :key="r.value" :value="r.value">
+                {{ r.label }}
+              </option>
+            </select>
+          </div>
+          <div>
+            <label class="text-sm text-gray-700">Contraseña</label>
+            <input v-model="form.password" type="password" class="w-full border rounded px-3 py-2" />
+          </div>
+          <div>
+            <label class="text-sm text-gray-700">Confirmar contraseña</label>
+            <input v-model="form.confirm" type="password" class="w-full border rounded px-3 py-2" />
+          </div>
+          <button :disabled="isLoading" class="bg-blue-700 text-white px-4 py-2 rounded hover:opacity-90">
+            {{ isLoading ? 'Creando...' : 'Crear usuario' }}
+          </button>
+        </form>
+      </div>
+    </section>
+    <UsersList/>
+  </div>
 </template>

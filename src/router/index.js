@@ -25,7 +25,8 @@ const routes = [
         { path: 'reportes', name: 'ReportView', component: ReportView, meta: { requiresAuth: true } },
         { path: 'descargas', name: 'DownloadView', component: DownloadView, meta: { requiresAuth: true } },
         { path: 'admin/usuarios', name: 'AdminUsersView', component: AdminUsersView,
-          meta: { requiresAuth: true, roles: ['ADMIN','SUPERUSER'] } },
+          meta: { requiresAuth: true, roles: ['ADMIN','SUPERUSER'] } 
+      },
       ],
     },
 ]
