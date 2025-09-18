@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { Upload, FileText, CheckCircle, AlertCircle, Loader2 } from 'lucide-vue-next'
+import { Upload, FileText, CheckCircle, AlertCircle, Loader2, Package } from 'lucide-vue-next'
 
 const emit = defineEmits(['upload', 'error'])
 
@@ -43,7 +43,7 @@ const showSuccess = (message) => {
 
 const handleUpload = async () => {
   if (!selectedFile.value) {
-    showError('Por favor selecciona un archivo CSV')
+    showError('Por favor selecciona un archivo CSV o XLSX')
     return
   }
 
@@ -54,7 +54,7 @@ const handleUpload = async () => {
   try {
     await new Promise(resolve => setTimeout(resolve, 2000))
     
-    showSuccess(`Archivo "${selectedFile.value.name}" cargado exitosamente. Los datos se procesarán para entrenar el modelo de IA.`)
+    showSuccess(`Archivo "${selectedFile.value.name}" cargado exitosamente. El inventario de medicamentos ha sido actualizado.`)
     emit('upload', selectedFile.value)
     
     selectedFile.value = null
@@ -64,7 +64,7 @@ const handleUpload = async () => {
     
   } catch (error) {
     showError('Error al cargar el archivo. Por favor intenta nuevamente.')
-    console.error('Error uploading CSV:', error)
+    console.error('Error uploading inventory:', error)
   } finally {
     isUploading.value = false
   }
@@ -88,16 +88,16 @@ const openFileDialog = () => {
   <div>
     <div>
       <div class="flex items-center gap-2 mb-4">
-        <Upload class="h-5 w-5 text-green-600" />
-        <h3 class="text-lg font-medium text-gray-900">Cargar datos históricos</h3>
+        <Package class="h-5 w-5 text-blue-600" />
+        <h3 class="text-lg font-medium text-gray-900">Actualizar inventario</h3>
       </div>
       
       <p class="text-sm text-gray-600 mb-6">
-        Sube un archivo CSV o XLSX con nuevos datos históricos para entrenar y mejorar el modelo de IA. 
-        El archivo debe contener columnas como: ID, Medicamento, Cantidad, Fecha, Departamento, etc.
+        Sube un archivo CSV o XLSX con datos de medicamentos para actualizar el inventario. 
+        El archivo debe contener información como: Código, Nombre, Stock, Precio, Proveedor, etc.
       </p>
 
-      <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-green-400 transition-colors">
+      <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-400 transition-colors">
         <input
           ref="fileInput"
           type="file"
@@ -134,11 +134,11 @@ const openFileDialog = () => {
             <button
               @click="handleUpload"
               :disabled="isUploading"
-              class="bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white rounded-lg px-6 py-2 inline-flex items-center"
+              class="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white rounded-lg px-6 py-2 inline-flex items-center"
             >
               <Loader2 v-if="isUploading" class="h-4 w-4 mr-2 animate-spin" />
               <Upload v-else class="h-4 w-4 mr-2" />
-              {{ isUploading ? 'Cargando...' : 'Cargar archivo' }}
+              {{ isUploading ? 'Cargando...' : 'Actualizar inventario' }}
             </button>
             
             <button

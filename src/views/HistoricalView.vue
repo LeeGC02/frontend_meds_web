@@ -3,6 +3,7 @@ import { ref, computed } from 'vue'
 import HistoryFilters from '../components/HistoryFilters.vue'
 import HistoryTable from '../components/HistoryTable.vue'
 import CSVUpload from '../components/CSVUpload.vue'
+import InventoryUpload from '../components/InventoryUpload.vue'
 
 // Generador de datos demo (cámbialo por tu API cuando quieras)
 const generateHistoryData = () => {
@@ -86,7 +87,14 @@ const handleCSVUpload = (file) => {
 
 const handleCSVError = (error) => {
   console.error('Error al cargar CSV:', error)
-  // Aquí puedes agregar lógica para mostrar notificaciones de error
+}
+
+const handleInventoryUpload = (file) => {
+  console.log('Archivo de inventario cargado:', file.name)
+}
+
+const handleInventoryError = (error) => {
+  console.error('Error al cargar inventario:', error)
 }
 </script>
 
@@ -95,21 +103,35 @@ const handleCSVError = (error) => {
   <section class="-mx-4 lg:-mx-6 space-y-4 p-6">
     <h1 class="px-4 lg:px-6 text-2xl font-semibold text-gray-900">Históricos</h1>
 
-    <!-- Filtros y carga de CSV lado a lado -->
-    <div class="px-4 lg:px-6 grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
-      <HistoryFilters
-        class="h-full"
-        :medications="medications"
-        :departments="departments"
-        @apply="applyFilters"
-        @reset="resetFilters"
-        @export="exportCsv"
-      />
-      
-      <CSVUpload 
-        @upload="handleCSVUpload"
-        @error="handleCSVError"
-      />
+    <!-- Sección de herramientas -->
+    <div class="px-4 lg:px-6 space-y-6">
+      <!-- Filtros -->
+      <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+        <h2 class="text-lg font-semibold text-gray-900 mb-4">Filtrar datos históricos</h2>
+        <HistoryFilters
+          :medications="medications"
+          :departments="departments"
+          @apply="applyFilters"
+          @reset="resetFilters"
+          @export="exportCsv"
+        />
+      </div>
+
+      <!-- Carga de datos -->
+      <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+        <h2 class="text-lg font-semibold text-gray-900 mb-6">Cargar datos</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <CSVUpload 
+            @upload="handleCSVUpload"
+            @error="handleCSVError"
+          />
+          
+          <InventoryUpload 
+            @upload="handleInventoryUpload"
+            @error="handleInventoryError"
+          />
+        </div>
+      </div>
     </div>
 
     <!-- Tabla de históricos -->

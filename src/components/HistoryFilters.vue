@@ -34,8 +34,8 @@ const onApply = () => {
 </script>
 
 <template>
-  <div class="bg-white rounded-xl border border-gray-200 shadow-sm h-full">
-    <div class="p-6">
+  <div class="h-full">
+    <div>
       <div class="flex items-center gap-2 mb-4">
         <Filter class="h-5 w-5 text-blue-600" />
         <h3 class="text-lg font-medium text-gray-900">Filtrar históricos</h3>
